@@ -32,14 +32,14 @@ public class Main_Window extends JFrame implements ActionListener, ChangeListene
 	JLabel lateralLedsText = new JLabel("Lateral LEDs");
 	JSpinner lateralLedsSpinner = new JSpinner(lateralLedsSM);
 	
-	JPanel statusPanel = new JPanel();
+	JPanel statusPanel = new JPanel(new GridBagLayout());
 	JTextArea statusConsole = new JTextArea("Test !\n");
 	JScrollPane statusScroll = new JScrollPane(statusConsole);
 
 	
 	public Main_Window(){
 		super("My Window");
-		setResizable(false);
+		//setResizable(false);
 		setBounds(500, 500, 500, 500);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
@@ -73,44 +73,56 @@ public class Main_Window extends JFrame implements ActionListener, ChangeListene
 		
 		connectionStatus.setForeground(Color.RED);
 		globalPanelGridBagConstraints.gridx = 3; globalPanelGridBagConstraints.gridy = 0;
-		globalPanelGridBagConstraints.anchor = GridBagConstraints.CENTER;
 		globalPanel.add(connectionStatus, globalPanelGridBagConstraints);
 		
 		/*
 		 * Top and Bottom LEDs Panel
 		 */
-		GridBagConstraints ledPanelGridBagConstraints = new GridBagConstraints();
-		ledPanelGridBagConstraints.insets = new Insets(0, 10, 10, 10);
-		ledPanelGridBagConstraints.anchor = GridBagConstraints.LINE_START;
+		GridBagConstraints topBottomLedPanelGridBagConstraints = new GridBagConstraints();
+		topBottomLedPanelGridBagConstraints.insets = new Insets(0, 10, 10, 10);
+		topBottomLedPanelGridBagConstraints.anchor = GridBagConstraints.LINE_START;
 		
 		topLedsActivated.addActionListener(this);
-		ledPanelGridBagConstraints.gridx = 0; ledPanelGridBagConstraints.gridy = 0;
-		topbottomLedPanel.add(topLedsActivated, ledPanelGridBagConstraints);	
+		topBottomLedPanelGridBagConstraints.gridx = 0; topBottomLedPanelGridBagConstraints.gridy = 0;
+		topbottomLedPanel.add(topLedsActivated, topBottomLedPanelGridBagConstraints);	
 		
 		topLedsSpinner.setEnabled(false);
 		topLedsSpinner.setPreferredSize(new Dimension(35,20));
-		ledPanelGridBagConstraints.gridx = 1; ledPanelGridBagConstraints.gridy = 0;
-		topbottomLedPanel.add(topLedsSpinner, ledPanelGridBagConstraints);
+		topBottomLedPanelGridBagConstraints.gridx = 1; topBottomLedPanelGridBagConstraints.gridy = 0;
+		topbottomLedPanel.add(topLedsSpinner, topBottomLedPanelGridBagConstraints);
 		
-		ledPanelGridBagConstraints.gridx = 0; ledPanelGridBagConstraints.gridy = 1;
-		topbottomLedPanel.add(bottomLedsActivated, ledPanelGridBagConstraints);
+		topBottomLedPanelGridBagConstraints.gridx = 0; topBottomLedPanelGridBagConstraints.gridy = 1;
+		topbottomLedPanel.add(bottomLedsActivated, topBottomLedPanelGridBagConstraints);
 		
 		bottomLedsSpinner.setEnabled(false);
 		bottomLedsSpinner.setPreferredSize(new Dimension(35,20));
 		bottomLedsSpinner.addChangeListener(this);
-		ledPanelGridBagConstraints.gridx = 1; ledPanelGridBagConstraints.gridy = 1;
-		topbottomLedPanel.add(bottomLedsSpinner, ledPanelGridBagConstraints);
+		topBottomLedPanelGridBagConstraints.gridx = 1; topBottomLedPanelGridBagConstraints.gridy = 1;
+		topbottomLedPanel.add(bottomLedsSpinner, topBottomLedPanelGridBagConstraints);
 		
 		topbottomLedPanel.setBorder(new TitledBorder("Top & Bottom LEDs"));
 		globalPanelGridBagConstraints.gridx = 0; globalPanelGridBagConstraints.gridy = 2;
-		globalPanelGridBagConstraints.gridwidth = 2;
+		globalPanelGridBagConstraints.gridwidth = 3;
 		globalPanelGridBagConstraints.fill = GridBagConstraints.BOTH;
 		globalPanel.add(topbottomLedPanel, globalPanelGridBagConstraints);
 		
 		/*
 		 * Lateral LEDs Panel
 		 */
+		GridBagConstraints lateralLedPanelGridBagConstraints = new GridBagConstraints();
+		lateralLedPanel.setBorder(new TitledBorder("Lateral LEDs"));
 		
+		lateralLedPanelGridBagConstraints.gridx = 0; lateralLedPanelGridBagConstraints.gridy = 0;
+		lateralLedPanelGridBagConstraints.insets = new Insets(0, 10, 10, 10);
+		lateralLedPanel.add(lateralLedsText,lateralLedPanelGridBagConstraints);
+		
+		lateralLedsSpinner.setPreferredSize(new Dimension(35, 20));
+		lateralLedPanelGridBagConstraints.gridx = 1; lateralLedPanelGridBagConstraints.gridy = 0;
+		lateralLedPanel.add(lateralLedsSpinner, lateralLedPanelGridBagConstraints);
+		globalPanelGridBagConstraints.gridx = 3; globalPanelGridBagConstraints.gridy = 2;
+		globalPanelGridBagConstraints.gridwidth = 1;
+		globalPanelGridBagConstraints.fill = GridBagConstraints.VERTICAL;
+		globalPanel.add(lateralLedPanel, globalPanelGridBagConstraints);
 		
 		/* 
 		 * Status Panel
