@@ -1,5 +1,5 @@
 package test_project;
-import GUI.Main_Window;
+import GUI.MainWindow;
 
 public class Main {
 
@@ -8,7 +8,7 @@ public class Main {
 	 */
 	public static void main(String[] args) throws Exception{
 		
-		Main_Window Main = new Main_Window();
+		MainWindow Main = new MainWindow();
 		
 	}
 

@@ -6,7 +6,7 @@ import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.awt.event.*;
 
-public class Main_Window extends JFrame implements ActionListener, ChangeListener{
+public class MainWindow extends JFrame implements ActionListener, ChangeListener{
 	
 	/**
 	 * 
@@ -32,15 +32,17 @@ public class Main_Window extends JFrame implements ActionListener, ChangeListene
 	JLabel lateralLedsText = new JLabel("Lateral LEDs");
 	JSpinner lateralLedsSpinner = new JSpinner(lateralLedsSM);
 	
+	ScreenAndZonesPanel screeAndZones = new ScreenAndZonesPanel();
+	
 	JPanel statusPanel = new JPanel(new GridBagLayout());
 	JTextArea statusConsole = new JTextArea("Test !\n");
 	JScrollPane statusScroll = new JScrollPane(statusConsole);
 
 	
-	public Main_Window(){
+	public MainWindow(){
 		super("My Window");
-		//setResizable(false);
-		setBounds(500, 500, 500, 500);
+		setBounds(300, 300, 500, 500);
+		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		GridBagConstraints globalPanelGridBagConstraints = new GridBagConstraints();
@@ -125,6 +127,15 @@ public class Main_Window extends JFrame implements ActionListener, ChangeListene
 		globalPanel.add(lateralLedPanel, globalPanelGridBagConstraints);
 		
 		/* 
+		 * Screen and Zones Panel
+		 */
+		globalPanelGridBagConstraints.gridx = 0; globalPanelGridBagConstraints.gridy = 3;
+		lateralLedPanelGridBagConstraints.insets = new Insets(0, 0, 0, 0);
+		globalPanelGridBagConstraints.gridwidth = 4;
+		globalPanelGridBagConstraints.fill = GridBagConstraints.BOTH;
+		globalPanel.add(screeAndZones,globalPanelGridBagConstraints);
+		
+		/* 
 		 * Status Panel
 		 */
 		statusPanel.setLayout(new BoxLayout(statusPanel, BoxLayout.Y_AXIS));
@@ -136,13 +147,18 @@ public class Main_Window extends JFrame implements ActionListener, ChangeListene
 		statusScroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		statusScroll.setPreferredSize(new Dimension(100,100));
 		statusPanel.add(statusScroll);
-		globalPanelGridBagConstraints.gridx = 0; globalPanelGridBagConstraints.gridy = 3;
+		globalPanelGridBagConstraints.gridx = 0; globalPanelGridBagConstraints.gridy = 4;
 		globalPanelGridBagConstraints.gridwidth = 4;
 		globalPanelGridBagConstraints.fill = GridBagConstraints.BOTH;
 		globalPanel.add(statusPanel, globalPanelGridBagConstraints);
 		
 		pack();
 		setVisible(true);
+		
+//		screeAndZones.baseRectDrawing(screeAndZones.getGraphics(), this.getWidth(), Toolkit.getDefaultToolkit().getScreenSize());
+		
+		pack();
+		
 		
 	}
 	
