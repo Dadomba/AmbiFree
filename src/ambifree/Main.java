@@ -1,5 +1,5 @@
-package test_project;
-import GUI.MainWindow;
+package ambifree;
+import gui.MainWindow;
 
 public class Main {
 
